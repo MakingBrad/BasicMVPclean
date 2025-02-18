@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useStore from '../../zustand/store';
-
+import DesignList from '../DesignList/DesignList';
 
 function LoginPage() {
   const [username, setUsername] = useState('');
@@ -27,6 +27,8 @@ function LoginPage() {
 
   return (
     <>
+    <DesignList/>
+
       <h2>Login Page</h2>
       <form onSubmit={handleLogIn}>
         <label htmlFor="username">Username:</label>

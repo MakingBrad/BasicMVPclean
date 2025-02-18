@@ -29,6 +29,12 @@ function Nav() {
           </>
         )
       }
+      {// show admin functions if user is admin
+        user.user_is_admin ?(
+          <p>AdminDude!</p>
+        ):(null)
+
+      }
       {/* Show these links regardless of auth status: */}
         <li>
           <NavLink to="/about">About</NavLink>

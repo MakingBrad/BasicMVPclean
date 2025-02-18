@@ -7,8 +7,8 @@ function UserList() {
 let [userList, setUserList] = useState([]);
 
 useEffect(() => {
-    console.log('in useEffect')
-   // getStudents();
+    console.log('Userlist Component in useEffect')
+  
    getUserList();
 }, []);
 console.log (userList);
