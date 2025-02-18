@@ -1,5 +1,5 @@
 import useStore from '../../zustand/store'
-
+import UserList from '../UserList/UserList';
 
 function HomePage() {
   const user = useStore((state) => state.user);
@@ -13,6 +13,8 @@ function HomePage() {
       <button onClick={logOut}>
         Log Out
       </button>
+      <UserList/>
+      
     </>
   );
 }

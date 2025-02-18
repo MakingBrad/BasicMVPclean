@@ -18,6 +18,23 @@ router.get('/', (req, res) => {
   }
 });
 
+//Get request for UserList - Feb9 6pm
+router.get('/all', (req, res) => {
+  console.log ("WTF");
+  // Get all of the users from the database
+  const sqlText = `SELECT * FROM "user"`;
+  pool.query(sqlText)
+      .then((result) => {
+        console.log(result.rows);
+          res.send(result.rows);
+      })
+      .catch((error) => {
+          console.log(`Error making database query ${sqlText}`, error);
+          res.sendStatus(500);
+      });
+});
+
+//end of the get for UserList
 // Handles the logic for creating a new user. The one extra wrinkle here is
 // that we hash the password before inserting it into the database.
 router.post('/register', (req, res, next) => {
