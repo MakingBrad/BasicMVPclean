@@ -45,11 +45,11 @@ const getUserList = () => {
                     {userList.map(user => (
                         <tr key={user.id}>
                             <td>
-                                {user.first_name}
+                                {user.username}
                             </td>
-                            <td>
+                            {/* <td>
                                 {user.last_name}
-                            </td>
+                            </td> */}
                         </tr>
                     ))}
                 </tbody>

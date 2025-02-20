@@ -34,7 +34,7 @@ const getDesignList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {designList.map(user => (
+                    {designList.map(designs => (
                         <tr key={designs.id}>
                             <td>
                                 {designs.name}

@@ -27,7 +27,6 @@ function LoginPage() {
 
   return (
     <>
-    <DesignList/>
 
       <h2>Login Page</h2>
       <form onSubmit={handleLogIn}>
