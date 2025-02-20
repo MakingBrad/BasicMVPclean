@@ -9,13 +9,13 @@ const router = express.Router();
 
 //have the authentication part of the get route (brad thinks he needs this so that this route is 
 //"protected"... but Brad is not 100% certain about it)
-// router.get('/', (req, res) => {
-//     if (req.isAuthenticated()) {
-//       res.send(req.user);
-//     } else {
-//       res.send({});
-//     }
-//   });
+router.get('/', (req, res) => {
+    if (req.isAuthenticated()) {
+      res.send(req.user);
+    } else {
+      res.send({});
+    }
+  });
 
   //Get request for DesignList - Feb18 in the morning
         //Brad wonders if this get request needs an userStrategy.authenticate('local')

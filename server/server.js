@@ -29,7 +29,7 @@ app.use(passport.session());
 // Apply router files:
 app.use('/api/user', userRouter);
 // Applying the router for the Design route:
-app.use('api/design', designRouter);
+app.use('/api/design', designRouter);
 
 // Start the server:
 app.listen(PORT, () => {
