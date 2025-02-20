@@ -31,7 +31,9 @@ function Nav() {
       }
       {// show admin functions if user is admin
         user.user_is_admin ?(
-          <p>AdminDude!</p>
+          <li>
+              <NavLink to="/CreateDesign">Create Design</NavLink>
+            </li>
         ):(null)
 
       }

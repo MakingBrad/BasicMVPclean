@@ -10,7 +10,7 @@ import Nav from '../Nav/Nav';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
+import CreateDesign from '../CreateDesign/CreateDesign';
 
 function App() {
   const user = useStore((state) => state.user);
@@ -58,6 +58,19 @@ function App() {
               )
             }
           />
+        <Route 
+            exact path="/CreateDesign"
+            element={
+              <>
+                <CreateDesign/>
+                
+                <p>
+                  --From Steve McConnell's <em>Code Complete</em>.
+                </p>
+              </>
+            }
+          />
+        
           <Route 
             exact path="/about"
             element={
