@@ -24,6 +24,7 @@ const handleCreateDesign = async (e) => {
   try {
     await addDesign({name, height_in_inches, width_in_inches, image_file_name,userId});
     //navigate('/'); //redirect after adding design-"home"
+    alert("Your Design has been saved!");
   } catch (error) {
     console.error('Error adding design:', error);
   }
@@ -56,8 +57,6 @@ const handleCreateDesign = async (e) => {
           value={width_in_inches}
           onChange={(e) => setWidth_in_inches(e.target.value)}
         />
-
-        // Brad Decided that the image file name was not required
         
         <input
           type="file"
