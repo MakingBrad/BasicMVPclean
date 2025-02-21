@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 function DesignList() {
 //setters and getters
-let [designList, setDesignList] = useState([]);
+const [designList, setDesignList] = useState([]);
 
 useEffect(() => {
   console.log('DesignList Component in useEffect')

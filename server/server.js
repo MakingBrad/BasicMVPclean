@@ -30,6 +30,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 // Applying the router for the Design route:
 app.use('/api/design', designRouter);
+app.get('/', (req, res) => res.send('Design API running'))
 
 // Start the server:
 app.listen(PORT, () => {

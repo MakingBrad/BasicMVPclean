@@ -25,7 +25,7 @@ router.get('/all', (req, res) => {
   const sqlText = `SELECT * FROM "user"`;
   pool.query(sqlText)
       .then((result) => {
-        console.log(result.rows);
+        //console.log(result.rows);
           res.send(result.rows);
       })
       .catch((error) => {

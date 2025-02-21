@@ -1,11 +1,7 @@
 // these are the imports Brad thought were necessary
-const express = require('express');
-const encryptLib = require('../modules/encryption');
+const router = require('express').Router();
 const pool = require('../modules/pool');
-const userStrategy = require('../strategies/user.strategy');
 
-//define the router for the code below it
-const router = express.Router();
 
 //have the authentication part of the get route (brad thinks he needs this so that this route is 
 //"protected"... but Brad is not 100% certain about it)
@@ -21,19 +17,38 @@ router.get('/', (req, res) => {
         //Brad wonders if this get request needs an userStrategy.authenticate('local')
         //after the '/all'.
 
-router.get('/all', (req, res) => {
+router.get('/', (req, res) => {
     console.log ("Designs route WTF");
     // Get all of the users from the database
-    const sqlText = `SELECT * FROM "designs"`;
-    pool.query(sqlText)
+    const queryText = `SELECT * FROM "designs";`;
+    pool.query(queryText)
         .then((result) => {
           console.log(result.rows);
             res.send(result.rows);
         })
         .catch((error) => {
-            console.log(`Error making database query ${sqlText}`, error);
+            console.log(`Error making database query ${queryText}`, error);
             res.sendStatus(500);
         });
+  });
+
+  router.get('/:id', (req,res) => {
+    const {id} = req.params;
+    const queryText = `SELECT * FROM "designs" WHERE id = $1;`;
+    pool
+      .query(queryText)
+      .then((result) =>{
+        res.send(result.rows[0]);
+      })
+      .catch((error) =>{
+        console.log('Error GET /api/design/id',error);
+        res.sendStatus(500);
+      });
+  });
+  
+  router.post('/',( req,res) => {
+    console.log('this is req.body',req.body);
+    res.send ('woof');
   });
   //end of the get for DesignList
 
