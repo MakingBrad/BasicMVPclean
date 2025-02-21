@@ -29,7 +29,7 @@ router.get('/all', (req, res) => {
             res.send(result.rows);
         })
         .catch((error) => {
-            console.log(`Error making database query ${queryText}`, error);
+            console.log(`Error getting all designs ${queryText}`, error);
             res.sendStatus(500);
         });
   });
@@ -52,6 +52,25 @@ router.get('/all', (req, res) => {
       });
   });
   
+  //THIS IS THE EDIT ROUTE FOR A SINGLE DESIGN
+  router.put('/:id', (req,res) => {
+    console.log("before Put req.body =",req.body);
+    console.log("before Put req.params =",req.params);
+    const {name} = req.body;
+    const {id} = req.params;
+    const queryText = `UPDATE "designs" SET "name" = $1 WHERE "id"=$2;`;
+    const values = [name,id];
+
+    pool
+      .query(queryText, values)
+      .then((result) =>{
+        res.send(result.rows[0]);
+      })
+      .catch((error) =>{
+        console.log('Error PUT /api/design/id',error);
+        res.sendStatus(500);
+      });
+  });
 
   //in the post route below you will see in the values line the entry 'req.body.userID' you would expect req.body.user.id - for some reason
   //a reason we do not know - VScode didn't like req.body.user.id - so we had to define 'userID = user.id' to keep an error from happening
