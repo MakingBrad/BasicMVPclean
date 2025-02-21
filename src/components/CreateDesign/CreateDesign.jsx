@@ -9,25 +9,21 @@ const CreateDesign = () => {
 const addDesign = useStore((store) => store.addDesign);
 //define the existence of the array that is designDetails
 const designDetails = useStore((store) => store.designDetails);
-//const setDesignDetails = useStore((store) => store.setDesignDetails);
-//define the individual elements that get packaged into the array
-//const setDesignName = useStore(() => store.setDesignName);
-// const setDesignHeight = useStore(() => store.setDesignHeight);
-// const setDesignWidth = useStore(() => store.setDesignWidth);
-// const setDesignFileName = useStore(() => store.setDesignFileName);
-const [name,setName] = useState("testname");
-const [height_in_inches,setHeight_in_inches] = useState("testheight");
-const [width_in_inches, setWidth_in_inches] = useState("tesdtWidth");
-const [image_file_name, setImage_file_name] = useState("ImageFileName");
+const user = useStore((store) => store.user);
+const [name,setName] = useState("");
+const [height_in_inches,setHeight_in_inches] = useState("");
+const [width_in_inches, setWidth_in_inches] = useState("");
+const [image_file_name, setImage_file_name] = useState("");
 //Pack up the designDetails... in one nice package
 //const {name, height_in_inches, width_in_inches, image_file_name}= designDetails;
 
 const handleCreateDesign = async (e) => {
   e.preventDefault();
-
+  console.log (user);
+  const userId = user.id
   try {
-    await addDesign({name, height_in_inches, width_in_inches, image_file_name});
-    navigate('/'); //redirect after adding design-"home"
+    await addDesign({name, height_in_inches, width_in_inches, image_file_name,userId});
+    //navigate('/'); //redirect after adding design-"home"
   } catch (error) {
     console.error('Error adding design:', error);
   }
@@ -44,21 +40,21 @@ const handleCreateDesign = async (e) => {
           required
           onChange={(e) => setName(e.target.value)}
         />
-        {/*
+       
         <input
           type="number"
           placeholder = "Height"
           required
           value={height_in_inches}
-          onChange={(e) => setDesignHeight(e.target.value)}
+          onChange={(e) => setHeight_in_inches(e.target.value)}
         />
-        
+         
         <input
           type="number"
           placeholder="Width"
           required
           value={width_in_inches}
-          onChange={(e) => setDesignWidth(e.target.value)}
+          onChange={(e) => setWidth_in_inches(e.target.value)}
         />
 
         // Brad Decided that the image file name was not required
@@ -67,8 +63,8 @@ const handleCreateDesign = async (e) => {
           type="file"
           placeholder="Design File Name"
           value={image_file_name}
-          onChange={(e) => setDesignFileName(e.target.value)}
-        /> */}
+          onChange={(e) => setImage_file_name(e.target.value)}
+        /> 
         <button type="submit">
           Save Design 
         </button>

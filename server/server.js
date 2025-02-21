@@ -31,6 +31,7 @@ app.use('/api/user', userRouter);
 // Applying the router for the Design route:
 app.use('/api/design', designRouter);
 app.get('/', (req, res) => res.send('Design API running'))
+//Brad thinks there needs to be an app.post('route',something)?
 
 // Start the server:
 app.listen(PORT, () => {
