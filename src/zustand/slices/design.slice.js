@@ -12,6 +12,7 @@ fetchDesigns: async ()=>{
 },
 addDesign: async (newDesign) =>{
     try {
+        console.log("Here is the form data - log from slice",newDesign);
         await axios.post('/api/design', newDesign);
         get().fetchDesigns();
     } catch (error) {

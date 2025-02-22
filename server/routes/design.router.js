@@ -1,7 +1,24 @@
+//**For image upload */
+const multer = require('multer');
+//**for image upload */
+
+
 // these are the imports Brad thought were necessary
 const router = require('express').Router();
 const pool = require('../modules/pool');
 
+//**for image upload */
+const fileStorageEngine = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, './public/images');
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: fileStorageEngine });
+//**for image upload */END
 
 //have the authentication part of the get route (brad thinks he needs this so that this route is 
 //"protected"... but Brad is not 100% certain about it)
