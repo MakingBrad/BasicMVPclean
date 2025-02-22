@@ -38,7 +38,30 @@ const fetchSingleUserDesigns = (user) => {
   return (
     <>
    <p>This is text residing in SingleUserDesigns component.</p>
-      
+   <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Designs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {singleUserDesigns.map(designs => (
+                        <tr key={designs.id}>
+                            <td>
+                                {designs.name}
+                            </td>
+                            <td>
+                                {designs.height_in_inches}
+                            </td>
+                            <td>
+                                {designs.width_in_inches}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     </>
   );
 

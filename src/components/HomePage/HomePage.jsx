@@ -22,11 +22,11 @@ function HomePage() {
       <button onClick={logOut}>
         Log Out
       </button>
-      <p>this is a list of the "all design list"</p>
+      <h1>this is a list of the "all design list"</h1>
       <DesignList/>
-      <p>this "ties to" the singleUserDesigns</p>
+      <h1>this "ties to" the singleUserDesigns</h1>
       <SingleUserDesigns/>
-      <p>This is the list of the users</p>
+      <h1>This is the list of the users</h1>
       <UserList/>
       
     </>
