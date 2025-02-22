@@ -115,17 +115,18 @@ router.get('/all', (req, res) => {
   //in the post route below you will see in the values line the entry 'req.body.userID' you would expect req.body.user.id - for some reason
   //a reason we do not know - VScode didn't like req.body.user.id - so we had to define 'userID = user.id' to keep an error from happening
   //<shoulder shrug emoji>
-  router.post('/',( req,res) => {
+  router.post('/',upload.single("image_file_name"),( req,res) => {
     let newDesign = req.body;
     console.log('in post design.router, this is req.body',req.body);
-    const queryString = 'INSERT INTO designs (name,height_in_inches,width_in_inches,image_file_name,design_created_by,belongs_to_user) VALUES($1,$2,$3,$4,$5,$6);'
+    const queryString = 'SELECT * from "designs"';
+   // const queryString = 'INSERT INTO designs (name,height_in_inches,width_in_inches,image_file_name,design_created_by,belongs_to_user) VALUES($1,$2,$3,$4,$5,$6);'
 // in the values below I used req.body.userId for both design_created_by AND belongs_to_user
 //because I don't have the 'drop down' for the user the design ties to implemented yet
 //when I do, this will change and 'design belongs to' will be the customer that the design belongs to
 //I also need to implement a 'clear form' function here so the form is empty after the post.
   values = [req.body.name,req.body.height_in_inches,req.body.width_in_inches,req.body.image_file_name,req.body.userId,req.body.userId];
     
-  pool.query(queryString,values ).then((results)=>{
+  pool.query(queryString ).then((results)=>{
     res.sendStatus(201);
   }).catch((err)=>{
     console.log(err);

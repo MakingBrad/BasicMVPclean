@@ -2,6 +2,7 @@
 import useStore from '../../zustand/store';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
 
 const CreateDesign = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const handleCreateDesign = async (e) => {
 
     // Log the data object to the console
     console.log("formdata in createdeisgn:", dataObject);
-    await addDesign(formData);
+    axios.post ("/api/design",formData)
     //navigate('/'); //redirect after adding design-"home"
     alert("Your Design has been saved!");
   } catch (error) {
