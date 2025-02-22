@@ -28,6 +28,7 @@ const fetchSingleUserDesigns = (user) => {
   }).then((response) => {
     // this doesn't look right down here
       setSingleUserDesigns(response.data);
+      console.log("this is single users designs data:", response.data);
   }).catch((err)=>{
       console.log(err);
   });

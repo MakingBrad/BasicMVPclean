@@ -45,7 +45,7 @@ router.get('/all', (req, res) => {
     pool
       .query(queryText, values)
       .then((result) =>{
-        res.send(result.rows[0]);
+        res.send(result.rows);
         console.log("Hit on the query in the route for a single users designs.",result.rows);
       })
       .catch((error) =>{
