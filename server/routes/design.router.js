@@ -37,6 +37,7 @@ router.get('/all', (req, res) => {
   //THIS IS THE GET ROUTE FOR ALL DESIGNS FOR A SINGLE USER - "USER VIEW OF DESIGNS NOT ADMIN VIEW"
 
   router.get('/:id', (req,res) => {
+    console.log("Hit on route for designs for one user.");
     const {id} = req.params;
     const queryText = `SELECT * FROM "designs" WHERE "belongs_to_user" = $1;`;
     const values = [id];
@@ -45,11 +46,13 @@ router.get('/all', (req, res) => {
       .query(queryText, values)
       .then((result) =>{
         res.send(result.rows[0]);
+        console.log("Hit on the query in the route for a single users designs.",result.rows);
       })
       .catch((error) =>{
         console.log('Error GET /api/design/id',error);
         res.sendStatus(500);
       });
+      
   });
   
   //THIS IS THE EDIT ROUTE FOR A SINGLE DESIGN

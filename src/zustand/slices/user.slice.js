@@ -19,6 +19,7 @@ const createUserSlice = (set, get) => ({
       set({user : {}});
     }
   },
+
   register: async (newUserCredentials) => {
     // Registers a new user by sending a POST request to
     // /api/user/register, and then attempts to log them in.
@@ -31,6 +32,7 @@ const createUserSlice = (set, get) => ({
       get().setAuthErrorMessage('Oops! Registration failed. That username might already be taken. Try again!');
     }
   },
+
   logIn: async (userCredentials) => {
     // Logs in an existing user by sending a POST request
     // to /api/user/login and then retrieves their data.
@@ -50,6 +52,7 @@ const createUserSlice = (set, get) => ({
       }
     }
   },
+  
   logOut : async () => {
     // Logs out the current user by sending a POST request to
     // /api/user/logout, and then clears their data.

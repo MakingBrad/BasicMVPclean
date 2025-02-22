@@ -1,6 +1,7 @@
 import useStore from '../../zustand/store'
 import UserList from '../UserList/UserList';
 import DesignList from '../DesignList/DesignList';
+import SingleUserDesigns from '../SingleUserDesigns/SingleUserDesigns';
 
 function HomePage() {
   const user = useStore((state) => state.user);
@@ -21,8 +22,11 @@ function HomePage() {
       <button onClick={logOut}>
         Log Out
       </button>
+      <p>this is a list of the "all design list"</p>
       <DesignList/>
-
+      <p>this "ties to" the singleUserDesigns</p>
+      <SingleUserDesigns/>
+      <p>This is the list of the users</p>
       <UserList/>
       
     </>
