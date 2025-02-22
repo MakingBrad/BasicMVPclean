@@ -27,6 +27,7 @@ const getDesignList = () => {
   return (
     <>
         <div>
+            <p>Please note: This is a list of all designs, for all users.</p>
             <table>
                 <thead>
                     <tr>

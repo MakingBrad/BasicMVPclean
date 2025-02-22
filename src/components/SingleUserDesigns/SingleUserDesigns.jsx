@@ -39,6 +39,7 @@ const fetchSingleUserDesigns = (user) => {
     <>
    <p>This is text residing in SingleUserDesigns component.</p>
    <div>
+   <p>This is a list of all of your sticker designs.</p>
             <table>
                 <thead>
                     <tr>

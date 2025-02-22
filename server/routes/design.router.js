@@ -74,6 +74,26 @@ router.get('/all', (req, res) => {
         res.sendStatus(500);
       });
   });
+  //THIS IS THE DELETE ROUTE FOR A SINGLE DESIGN
+  router.delete('/:id', (req,res) => {
+    console.log("before Put req.body =",req.body);
+    console.log("before Put req.params =",req.params);
+    const {name} = req.body;
+    const {id} = req.params;
+    const queryText = `DELETE FROM "designs" WHERE "id"=$1`;
+    const values = [id];
+
+    pool
+      .query(queryText, values)
+      .then((result) =>{
+        res.send(result.rows[0]);
+      })
+      .catch((error) =>{
+        console.log('Error DELETE /api/design/id',error);
+        res.sendStatus(500);
+      });
+  });
+
 
   //in the post route below you will see in the values line the entry 'req.body.userID' you would expect req.body.user.id - for some reason
   //a reason we do not know - VScode didn't like req.body.user.id - so we had to define 'userID = user.id' to keep an error from happening

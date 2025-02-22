@@ -22,10 +22,13 @@ function HomePage() {
       <button onClick={logOut}>
         Log Out
       </button>
-      <h1>this is a list of the "all design list"</h1>
+      {user.user_is_admin ?(
+                <DesignList/>
+              ):(<SingleUserDesigns/>)}
+      {/* <h1>this is a list of the "all design list"</h1>
       <DesignList/>
       <h1>this "ties to" the singleUserDesigns</h1>
-      <SingleUserDesigns/>
+      <SingleUserDesigns/> */}
       <h1>This is the list of the users</h1>
       <UserList/>
       
