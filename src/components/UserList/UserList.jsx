@@ -41,10 +41,16 @@ useEffect(() => {
   return (
     <>
        <div>
-            <table>
+        <p>{JSON.stringify(userList)}</p>
+        <ul>
+            {userList.map(user=> (
+                <li key={user.id}>{user.username}</li>
+            ))}
+        </ul>
+            {/* <table>
                 <thead>
                     <tr>
-                        <th>{JSON.stringify(userList)}</th>
+                        <th>{JSON.stringify(userList)}</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -53,13 +59,10 @@ useEffect(() => {
                             <td>
                                 {user.username}
                             </td>
-                            {/* <td>
-                                {user.last_name}
-                            </td> */}
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </table> */}
         </div>
     </>
   );

@@ -29,7 +29,7 @@ const getDesignList = () => {
     <>
         <div>
             <p>Please note: This is a list of all designs, for all users.</p>
-            <table class="content-table">
+            <table className="content-table">
                 <thead>
                     <tr>
                         <th>Design Name</th>

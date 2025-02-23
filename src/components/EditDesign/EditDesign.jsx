@@ -24,7 +24,7 @@ function EditDesign() {
   return (
     <>
     {/* gonna need a background color for the background of the stickerframe of white */}
-    <div class="image-frame">
+    <div className="image-frame">
     <img src="public/images/KRSM_BLACK.jpg" height = "300" alt="" />
     <p>I am using krsm black as a placeholder.</p>
     </div>
