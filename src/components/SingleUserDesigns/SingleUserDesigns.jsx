@@ -53,10 +53,19 @@ const fetchSingleUserDesigns = (user) => {
                                 {designs.name}
                             </td>
                             <td>
-                                {designs.height_in_inches}
+                                {designs.height_in_inches} inches high --
                             </td>
                             <td>
-                                {designs.width_in_inches}
+                                {designs.width_in_inches}  inches wide
+                            </td>
+                            <td>
+                                <img src={designs.image_file_name} height="100"></img> 
+                            </td>
+                            <td>
+                                <button>Edit</button>
+                            </td>
+                            <td>
+                                <button>Delete</button>
                             </td>
                         </tr>
                     ))}
