@@ -32,6 +32,8 @@ const createUserSlice = (set, get) => ({
       set({userList : []} );
     }  
 },
+userSelect:'',
+setUserSelect: (id) => set({ userSelect: id }),
 
   register: async (newUserCredentials) => {
     // Registers a new user by sending a POST request to
