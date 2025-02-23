@@ -37,13 +37,18 @@ const fetchSingleUserDesigns = (user) => {
 
   return (
     <>
-   <p>This is text residing in SingleUserDesigns component.</p>
    <div>
    <p>This is a list of all of your sticker designs.</p>
-            <table>
+              <table class="content-table">
                 <thead>
                     <tr>
                         <th>Designs</th>
+                        <th>Height</th>
+                        <th>Width</th>
+                        <th>Sticker image</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +67,7 @@ const fetchSingleUserDesigns = (user) => {
                                 <img src={designs.image_file_name} height="100"></img> 
                             </td>
                             <td>
-                                <button>Edit</button>
+                                <button width="100px">Edit</button>
                             </td>
                             <td>
                                 <button>Delete</button>

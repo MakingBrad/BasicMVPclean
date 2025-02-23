@@ -29,10 +29,15 @@ const getDesignList = () => {
     <>
         <div>
             <p>Please note: This is a list of all designs, for all users.</p>
-            <table>
+            <table class="content-table">
                 <thead>
                     <tr>
-                        <th>Designs</th>
+                        <th>Design Name</th>
+                        <th>Sticker Height</th>
+                        <th>Sticker Width</th>
+                        <th>Image of Sticker</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,10 +47,10 @@ const getDesignList = () => {
                                 {designs.name}
                             </td>
                             <td>
-                                {designs.height_in_inches}  inches wide--
+                                {designs.height_in_inches}  inches
                             </td>
                             <td>
-                                {designs.width_in_inches}  inches high
+                                {designs.width_in_inches}  inches 
                             </td>
                             <td>
                                 <img src={designs.image_file_name} height="100"></img> 

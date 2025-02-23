@@ -63,7 +63,34 @@ nav a.active {
   text-decoration-thickness: 2px;
   transition: 0.7s;
 }
+/* Table Formatting */
+  .content-table {
+    border-collapse: collapse;
+    margin:25px 0;
+    font-size:0.9em;
+    min-width: 600px;
+    border-radius:10px 10px 10px 10px;
+    overflow: hidden;
+    background-color: white;
+  }
+  .content-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    font-weight:bold;
+    box-shadow: 0 0 20px rgba(0,0,0,0.50);
+  }
+  .content-table th,
+  .content-table td {
+    padding: 12px 15px;
+  }
+  .content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
 
+  .content-table tbody tr:last-of-type {
+    border-bottom: 15px solid #009879;
+  }
 /* Form Styles: */
 label {
   display: block;

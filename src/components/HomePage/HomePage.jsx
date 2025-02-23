@@ -2,6 +2,8 @@ import useStore from '../../zustand/store'
 import UserList from '../UserList/UserList';
 import DesignList from '../DesignList/DesignList';
 import SingleUserDesigns from '../SingleUserDesigns/SingleUserDesigns';
+//BRAD IS PUTING THE SELECT USER DROP DOWN HERE - ONLY BECAUSE IT IS EASILY ACCESSIBLE
+import SelectUserDropDown from '../SelectUserDropDown/SelectUserDropDown';
 //BRAD - YOU WILL MOST LIKELY NEED TO DELETE THE EDITDESIGN COMPONENT LATER
 //THAT MEANS THIS IMPORT BELOW, AND THE COMPONENT CALL IN THE RETURN
 import EditDesign from '../EditDesign/EditDesign';
@@ -25,6 +27,8 @@ function HomePage() {
       <button onClick={logOut}>
         Log Out
       </button>
+    {/* //BRAD IS PUTING THE SELECT USER DROP DOWN HERE - ONLY BECAUSE IT IS EASILY ACCESSIBLE */}
+      <SelectUserDropDown/>
       {user.user_is_admin ?(
                 <DesignList/>
               ):(<SingleUserDesigns/>)}

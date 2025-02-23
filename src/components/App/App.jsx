@@ -23,10 +23,11 @@ function App() {
   return (
     <>
       <header>
-        <h1>Prime Solo Project</h1>
+        <h2>TwinCitySticker.com</h2>
         <Nav />
       </header>
       <main>
+        <p>Live in Minnesota? Like Stickers? You're gonna love us!</p>
         <Routes>
           <Route 
             exact path="/"
