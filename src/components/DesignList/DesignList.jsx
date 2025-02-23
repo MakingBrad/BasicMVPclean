@@ -19,6 +19,7 @@ const getDesignList = () => {
       url: '/api/design/all'
   }).then((response) => {
       setDesignList(response.data);
+      console.log("this is the data coming back from the axios fetch",response.data)
   }).catch((err)=>{
       console.log(err);
   });
@@ -41,10 +42,19 @@ const getDesignList = () => {
                                 {designs.name}
                             </td>
                             <td>
-                                {designs.height_in_inches}
+                                {designs.height_in_inches}  inches wide--
                             </td>
                             <td>
-                                {designs.width_in_inches}
+                                {designs.width_in_inches}  inches high
+                            </td>
+                            <td>
+                                <img src={designs.image_file_name} height="100"></img> 
+                            </td>
+                            <td>
+                                <button>Edit</button>
+                            </td>
+                            <td>
+                                <button>Delete</button>
                             </td>
                         </tr>
                     ))}
