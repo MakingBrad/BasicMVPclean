@@ -91,6 +91,15 @@ nav a.active {
   .content-table tbody tr:last-of-type {
     border-bottom: 15px solid #009879;
   }
+  /* image framing style(s) */
+  .image-frame{
+    margin:25px;
+    background-color: white;
+    border-radius:20px 20px 20px 20px;
+    overflow: hidden;
+    width: 400px;
+    text-align: center;
+  }
 /* Form Styles: */
 label {
   display: block;

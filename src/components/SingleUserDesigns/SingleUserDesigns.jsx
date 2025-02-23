@@ -42,7 +42,7 @@ const fetchSingleUserDesigns = (user) => {
               <table class="content-table">
                 <thead>
                     <tr>
-                        <th>Designs</th>
+                        <th>Design Name</th>
                         <th>Height</th>
                         <th>Width</th>
                         <th>Sticker image</th>
@@ -58,10 +58,10 @@ const fetchSingleUserDesigns = (user) => {
                                 {designs.name}
                             </td>
                             <td>
-                                {designs.height_in_inches} inches high --
+                                {designs.height_in_inches} inches
                             </td>
                             <td>
-                                {designs.width_in_inches}  inches wide
+                                {designs.width_in_inches}  inches
                             </td>
                             <td>
                                 <img src={designs.image_file_name} height="100"></img> 

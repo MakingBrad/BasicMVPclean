@@ -23,8 +23,51 @@ function EditDesign() {
 
   return (
     <>
-      <h1>Edit your design name:</h1>
-      <p>Design Name: -Height: -Width: Image</p>
+    {/* gonna need a background color for the background of the stickerframe of white */}
+    <div class="image-frame">
+    <img src="public/images/KRSM_BLACK.jpg" height = "300" alt="" />
+    <p>I am using krsm black as a placeholder.</p>
+    </div>
+      <h1>Your Design's information:</h1>
+      <h3>Feel free to change the name of your design.</h3>
+      {/* <form onSubmit={handleEditSave}>
+         <input
+          placeholder="Design Name"
+          type="text"
+          value={name}
+          required
+          onChange={(e) => setName(e.target.value)}
+        />
+       
+        <input
+          type="number"
+          placeholder = "Height"
+          required
+          readonly
+          value={height_in_inches}
+          onChange={(e) => setHeight_in_inches(e.target.value)}
+        />
+         
+        <input
+          type="number"
+          placeholder="Width"
+          required
+          readonly
+          value={width_in_inches}
+          onChange={(e) => setWidth_in_inches(e.target.value)}
+        />
+        
+        <input
+          type="file"
+          placeholder="Design File Name"
+          // value={image_file_name}
+          onChange={(e) => setImage_file_name(e.target.files[0])}
+        /> 
+        <button type="submit">
+          Save Design 
+        </button>
+      
+      </form> */}
     </>
   );
 
