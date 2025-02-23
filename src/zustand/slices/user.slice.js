@@ -19,6 +19,19 @@ const createUserSlice = (set, get) => ({
       set({user : {}});
     }
   },
+  userList:[],
+  
+  getUserList: async () => {
+    try {
+      const data = await axios.get('/api/user/all');
+      console.log("this is data after the get:", data);
+      set((state) => ({userList: [...state.userList, data]}));
+
+    } catch (err) {
+      console.log('fetch/get all users error:',err);
+      set({userList : []} );
+    }  
+},
 
   register: async (newUserCredentials) => {
     // Registers a new user by sending a POST request to
@@ -52,7 +65,7 @@ const createUserSlice = (set, get) => ({
       }
     }
   },
-  
+
   logOut : async () => {
     // Logs out the current user by sending a POST request to
     // /api/user/logout, and then clears their data.
