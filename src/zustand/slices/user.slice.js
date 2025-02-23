@@ -25,7 +25,7 @@ const createUserSlice = (set, get) => ({
     try {
       const response = await axios.get('/api/user/all');
       console.log("this is data after the get:", response.data);
-      set((state) => ({userList: [...state.userList, ...response.data]}));
+      set(({userList: response.data}));
 
     } catch (err) {
       console.log('fetch/get all users error:',err);

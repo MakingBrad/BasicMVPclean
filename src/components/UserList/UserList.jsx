@@ -15,6 +15,7 @@ useEffect(() => {
   
    getUserList();
 }, []);
+
 // console.log (userList);
 
 //this fetch is going into the store
@@ -41,16 +42,10 @@ useEffect(() => {
   return (
     <>
        <div>
-        <p>{JSON.stringify(userList)}</p>
-        <ul>
-            {userList.map(user=> (
-                <li key={user.id}>{user.username}</li>
-            ))}
-        </ul>
-            {/* <table>
+            <table>
                 <thead>
                     <tr>
-                        <th>{JSON.stringify(userList)}</th> 
+                        <th>UserList from the store</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +57,7 @@ useEffect(() => {
                         </tr>
                     ))}
                 </tbody>
-            </table> */}
+            </table>
         </div>
     </>
   );
