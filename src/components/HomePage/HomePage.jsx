@@ -28,7 +28,7 @@ function HomePage() {
       <p>Your ID is: {user.id}</p>
 
       {/* Admin privilege notification */}
-      {user.user_is_admin ? (
+      {user.is_admin ? (
         <p>You have admin privileges - use them wisely.</p>
       ) : null}
       
@@ -43,7 +43,7 @@ function HomePage() {
       {/* Conditional rendering based on user role:
           - Admins see DesignList (all designs)
           - Regular users see SingleUserDesigns (their designs only) */}
-      {user.user_is_admin ? (
+      {user.is_admin ? (
         <DesignList/>
       ) : (
         <SingleUserDesigns/>

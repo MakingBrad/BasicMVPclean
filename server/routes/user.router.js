@@ -22,7 +22,7 @@ const router = express.Router();
 // Purpose: Check authentication status and get user info
 // Access: Public
 // Response: 
-// - Authenticated: Returns user object with id, username, access_level
+// - Authenticated: Returns user object with id, username, is_admin
 // - Unauthenticated: Returns empty object
 // Used by: Frontend to maintain session state and show appropriate content
 router.get('/', (req, res) => {
@@ -64,7 +64,7 @@ router.get('/all', rejectNonAdmin, (req, res) => {
 // - password: string (will be hashed)
 // Process:
 // 1. Encrypts password using bcrypt
-// 2. Stores new user in database with 'user' access level
+// 2. Stores new user in database with is_admin set to false
 // 3. Returns 201 on success
 router.post('/register', (req, res, next) => {
   const username = req.body.username;
@@ -72,9 +72,9 @@ router.post('/register', (req, res, next) => {
 
   const sqlText = `
     INSERT INTO "user"
-      ("username", "password", "access_level")
+      ("username", "password", "is_admin")
       VALUES
-      ($1, $2, 'user');
+      ($1, $2, FALSE);
   `;
   const sqlValues = [username, hashedPassword];
 
