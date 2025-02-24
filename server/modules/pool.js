@@ -20,7 +20,7 @@ else {
   pool = new pg.Pool({
     host: 'localhost',
     port: 5432,
-    database: 'small_sticker',   
+    database: 'testingSoloFeb24',   
     // 👈 Change this to the name of your database!
     // 'small_sticker' is the DB I want to use
   });
