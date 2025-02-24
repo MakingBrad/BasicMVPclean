@@ -1,34 +1,58 @@
+// Required imports for the App component
+// React hooks
 import { useEffect } from 'react';
+// React Router components for routing
 import {
   Routes,
   Route,
   Navigate
 } from "react-router-dom";
 
+// Global state management
 import useStore from '../../zustand/store';
-import Nav from '../Nav/Nav';
-import HomePage from '../HomePage/HomePage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
-import CreateDesign from '../CreateDesign/CreateDesign';
+// Component imports for different routes
+import Nav from '../Nav/Nav';                                 // Navigation bar
+import HomePage from '../HomePage/HomePage';                  // Main landing page
+import LoginPage from '../LoginPage/LoginPage';              // Authentication
+import RegisterPage from '../RegisterPage/RegisterPage';      // User registration
+import CreateDesign from '../CreateDesign/CreateDesign';     // Admin design creation
+import SingleUserDesigns from '../SingleUserDesigns/SingleUserDesigns'; // User designs
+import EditDesign from '../EditDesign/EditDesign';          // Design editing
+
+// App Component
+// Purpose: Root component of the application
+// Features:
+// - Handles routing and navigation
+// - Manages authentication state
+// - Provides protected routes
+// - Renders common layout elements (header, footer)
 
 function App() {
-  const user = useStore((state) => state.user);
-  const fetchUser = useStore((state) => state.fetchUser);
+  // Global state selectors
+  const user = useStore((state) => state.user);          // Current user data
+  const fetchUser = useStore((state) => state.fetchUser); // Function to fetch user
 
+  // Effect to fetch user data on component mount
+  // This ensures authentication state is maintained on page refresh
   useEffect(() => {
     fetchUser();
   }, [fetchUser]);
 
   return (
     <>
+      {/* Site Header */}
       <header>
         <h2>TwinCitySticker.com</h2>
-        <Nav />
+        <Nav /> {/* Navigation component */}
       </header>
+
+      {/* Main Content Area */}
       <main>
         <p>Live in Minnesota? Like Stickers? You're gonna love us!</p>
+        
+        {/* Route Configuration */}
         <Routes>
+          {/* Home Route - Protected */}
           <Route 
             exact path="/"
             element={
@@ -39,6 +63,7 @@ function App() {
               )
             }
           />
+          {/* Login Route - Redirects if already authenticated */}
           <Route 
             exact path="/login"
             element={
@@ -49,6 +74,7 @@ function App() {
               )
             }
           />
+          {/* Registration Route - Redirects if already authenticated */}
           <Route 
             exact path="/registration"
             element={
@@ -59,19 +85,40 @@ function App() {
               )
             }
           />
-        <Route 
-            exact path="/CreateDesign"
+          {/* Edit Design Route - Protected */}
+          <Route 
+            exact path="/edit/:id"
             element={
-              <>
-                <CreateDesign/>
-                
-                <p>
-                  --From Steve McConnell's <em>Code Complete</em>.
-                </p>
-              </>
+              user.id ? (
+                <EditDesign />
+              ) : (
+                <Navigate to="/login" replace />
+              )
             }
           />
-        
+          {/* Designs List Route - Protected */}
+          <Route 
+            exact path="/designs"
+            element={
+              user.id ? (
+                <SingleUserDesigns />
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+          {/* Create Design Route - Admin Only */}
+          <Route 
+            exact path="/CreateDesign"
+            element={
+              user.access_level === 'admin' ? (
+                <CreateDesign />
+              ) : (
+                <Navigate to="/" replace /> // Redirect non-admin users
+              )
+            }
+          />
+          {/* Public About Page */}
           <Route 
             exact path="/about"
             element={
@@ -105,6 +152,7 @@ function App() {
               </>
             }
           />
+          {/* 404 Catch-all Route */}
           <Route
             path="*"
             element={
@@ -113,6 +161,8 @@ function App() {
           />
         </Routes>
       </main>
+
+      {/* Site Footer */}
       <footer>
         <p>Copyright © {new Date().getFullYear()}</p>
       </footer>

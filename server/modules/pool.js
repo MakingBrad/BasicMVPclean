@@ -19,6 +19,8 @@ if (process.env.DATABASE_URL) {
 else {
   pool = new pg.Pool({
     host: 'localhost',
+    user: 'postgres',
+    password: 'admin',
     port: 5432,
     database: 'small_sticker',   
     // 👈 Change this to the name of your database!

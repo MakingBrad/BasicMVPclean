@@ -1,15 +1,30 @@
+// Required dependencies for user management
+// express: Web framework for handling routes
+// encryptLib: Custom module for password encryption
+// pool: Database connection pool for PostgreSQL
+// userStrategy: Passport strategy for local authentication
 const express = require('express');
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
 
+// User Router
+// Purpose: Handles all user-related operations including:
+// - Authentication (login/logout)
+// - Registration
+// - User information retrieval
+// - Admin-specific user operations
+
 
 const router = express.Router();
 
-// If the request came from an authenticated user, this route
-// sends back an object containing that user's information.
-// Otherwise, it sends back an empty object to indicate there
-// is not an active session.
+// GET /api/user
+// Purpose: Check authentication status and get user info
+// Access: Public
+// Response: 
+// - Authenticated: Returns user object with id, username, access_level
+// - Unauthenticated: Returns empty object
+// Used by: Frontend to maintain session state and show appropriate content
 router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
     res.send(req.user);
@@ -18,8 +33,15 @@ router.get('/', (req, res) => {
   }
 });
 
-//Get request for UserList - Feb9 6pm
-router.get('/all', (req, res) => {
+// Import admin middleware for protected routes
+const { rejectNonAdmin } = require('../modules/admin-middleware');
+
+// GET /api/user/all
+// Purpose: Retrieve list of all users
+// Access: Admin only (enforced by rejectNonAdmin middleware)
+// Response: Array of user objects
+// Used by: Admin dashboard for user management
+router.get('/all', rejectNonAdmin, (req, res) => {
   console.log ("WTF");
   // Get all of the users from the database
   const sqlText = `SELECT * FROM "user"`;
@@ -34,18 +56,25 @@ router.get('/all', (req, res) => {
       });
 });
 
-//end of the get for UserList
-// Handles the logic for creating a new user. The one extra wrinkle here is
-// that we hash the password before inserting it into the database.
+// POST /api/user/register
+// Purpose: Create new user account
+// Access: Public
+// Request body: 
+// - username: string
+// - password: string (will be hashed)
+// Process:
+// 1. Encrypts password using bcrypt
+// 2. Stores new user in database with 'user' access level
+// 3. Returns 201 on success
 router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const hashedPassword = encryptLib.encryptPassword(req.body.password);
 
   const sqlText = `
     INSERT INTO "user"
-      ("username", "password")
+      ("username", "password", "access_level")
       VALUES
-      ($1, $2);
+      ($1, $2, 'user');
   `;
   const sqlValues = [username, hashedPassword];
 
@@ -59,16 +88,28 @@ router.post('/register', (req, res, next) => {
     });
 });
 
-// Handles the logic for logging in a user. When this route receives
-// a request, it runs a middleware function that leverages the Passport
-// library to instantiate a session if the request body's username and
-// password are correct.
-  // You can find this middleware function in /server/strategies/user.strategy.js.
+// POST /api/user/login
+// Purpose: Authenticate user and create session
+// Access: Public
+// Request body:
+// - username: string
+// - password: string
+// Process:
+// 1. Uses Passport local strategy for authentication
+// 2. Verifies credentials against database
+// 3. Creates session on success
+// 4. Returns 200 if authenticated
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {
   res.sendStatus(200);
 });
 
-// Clear all server session information about this user:
+// POST /api/user/logout
+// Purpose: End user session
+// Access: Any authenticated user
+// Process:
+// 1. Uses Passport's logout method
+// 2. Destroys session data
+// 3. Returns 200 on successful logout
 router.post('/logout', (req, res, next) => {
   // Use passport's built-in method to log out the user.
   req.logout((err) => {
