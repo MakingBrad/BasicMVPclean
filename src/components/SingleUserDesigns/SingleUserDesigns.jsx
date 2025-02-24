@@ -68,7 +68,10 @@ const fetchSingleUserDesigns = (user) => {
                                 <img src={designs.image_file_name} height="100"></img> 
                             </td>
                             <td>
-                                <button width="100px">Edit</button>
+                                <button width="100px" onClick={() => onEdit(designs.id)}>Edit</button>
+                              {/* in the function history.push to a to a route that contains the id as a
+                              parameter - then in the app.jsx define a route with a path like edit/:id if
+                              in app.jsx  */}
                             </td>
                             <td>
                                 <button>Delete</button>

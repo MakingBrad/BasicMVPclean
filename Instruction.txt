@@ -1,0 +1,22 @@
+Goals for Collaboration:
+1- Allow a user (not administrator) to click on the "edit button" for a specific design
+    and then the user is taken to the "Edit Design" page/route.
+2-When the user gets to the "edit design" page/route for the design they clicked on from
+    #1 above - they will see a image of the sticker (the image will be larger than in the 
+    design list) - they will also see other metadata they cannot edit 
+    Cannot edit: Height, Width, image
+    They will be able to edit the name of the sticker design.
+    Once they write over the form element, they will be able to click "save"
+    saving will use the exisiting 'put route' to 'put the new row, with the new name'
+    into the database.
+    Letting them know that they updated can be almost any workflow, right now I think
+    that having an alert "The name for your design has been changed." and then
+    taking them to the 'design list' will be the easiest implementation
+3-Delete button - I want to make the delete button available to ADMIN on the DesignList
+    (but not on the SingleUserDesigns component).  When an admin clicks delete, the delete 
+    route (in component design router) will delete the row from the DB.
+4-Assign a user to a design:
+    On the create design page, I want to implement the component "SelectUserDropDown"
+    so that admin can assign a design to one specific user.  So the 'create design' will
+    assign the user to the design (and when the user looks at their "SingleUserDesigns"
+    they will see the new 'created design' in their list.)
