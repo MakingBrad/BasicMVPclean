@@ -1,4 +1,3 @@
--------------------------------------------------------
 --------------------------------------------------
 -- START FROM SCRATCH:
 DROP TRIGGER IF EXISTS "on_user_update" ON "user";
@@ -12,6 +11,7 @@ CREATE TABLE "user" (
   "id" SERIAL PRIMARY KEY,
   "username" VARCHAR (80) UNIQUE NOT NULL,
   "password" VARCHAR (1000) NOT NULL,
+  "is_admin" BOOLEAN DEFAULT FALSE,
   "inserted_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
   "updated_at" TIMESTAMPTZ NOT NULL DEFAULT now()
 );
@@ -20,15 +20,11 @@ CREATE TABLE "user" (
 -------------------------------------------------------
 --------------------------------------------------
 -- SEED DATA:
---   You'll need to actually register users via the application in order to get hashed
---   passwords. Once you've done that, you can modify this INSERT statement to include
---   your dummy users. Be sure to copy/paste their hashed passwords, as well.
---   This is only for development purposes! Here's a commented-out example:
--- INSERT INTO "user"
---   ("username", "password")
---   VALUES
---   ('unicorn10', '$2a$10$oGi81qjXmTh/slGzYOr2fu6NGuCwB4kngsiWQPToNrZf5X8hxkeNG'), --pw: 123
---   ('cactusfox', '$2a$10$8./c/6fB2BkzdIrAUMWOxOlR75kgmbx/JMrMA5gA70c9IAobVZquW'); --pw: 123
+-- Insert admin user with hashed password
+INSERT INTO "user"
+  ("username", "password", "is_admin")
+  VALUES
+  ('admin', '$2a$10$oGi81qjXmTh/slGzYOr2fu6NGuCwB4kngsiWQPToNrZf5X8hxkeNG', TRUE); --pw: 123
 
 
 -------------------------------------------------------
