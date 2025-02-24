@@ -88,6 +88,10 @@ router.post('/register', (req, res, next) => {
     });
 });
 
+
+
+
+
 // POST /api/user/login
 // Purpose: Authenticate user and create session
 // Access: Public
