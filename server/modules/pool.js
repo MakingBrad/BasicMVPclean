@@ -19,10 +19,10 @@ if (process.env.DATABASE_URL) {
 else {
   pool = new pg.Pool({
     host: 'localhost',
-    user: 'postgres',
-    password: 'admin',
+    // user: 'postgres',
+    // password: 'admin',
     port: 5432,
-    database: 'small_sticker',   
+    database: 'tcstickSolo',   
     // 👈 Change this to the name of your database!
     // 'small_sticker' is the DB I want to use
   });
